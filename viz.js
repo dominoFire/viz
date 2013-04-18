@@ -92,14 +92,14 @@ var actualizaGrafica = function()
 		if(tloc==grows[i].Loc &&
 			 trubro==grows[i].Rubro) {
 
-			sum[ grows[i].Decil - 1 ] += grows[i].PropIngreso;
+			sum[ grows[i].Decil - 1 ] += grows[i].PropIngreso * grows[i].N;
 			nfilas[ grows[i].Decil - 1 ]++;
 		}
 	}
 	//los juntamos
 	console.log("Tam: " +sum.length);
 	for(var i=0; i<sum.length; i++) {
-		sum[i] /= nfilas[i];
+		sum[i] = sum[i]/nfilas[i];
 		console.log(sum[i]);
 	}
 
@@ -112,7 +112,7 @@ var actualizaGrafica = function()
 			.attr("transform", 
 				function(d, i) { return "translate(0" +"," +(i*20) +")" })
 			.attr("height", "20px")
-			.attr("width", function(d) { return (d*2000) + "px"; } )
+			.attr("width", function(d) { return (d*10) + "px"; } )
 			.attr("fill", function(d, i) { return "rgb(" +(i*25) +",25,23)"; });	
 			firstTime = false;
 	}
@@ -120,7 +120,7 @@ var actualizaGrafica = function()
 		d3.select("svg") //crear el canvas
 			.selectAll("rect")
 			.data(sum) //pintar las gráficas
-			.attr("width", function(d) { return (d*2000) + "px"; } );
+			.attr("width", function(d) { return (d*10) + "px"; } );
 	}
 	
 }
